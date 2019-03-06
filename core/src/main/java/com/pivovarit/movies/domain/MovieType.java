@@ -1,5 +1,5 @@
 package com.pivovarit.movies.domain;
 
-public enum MovieType {
+enum MovieType {
     NEW, REGULAR, OLD;
 }

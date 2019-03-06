@@ -1,6 +1,6 @@
 package com.pivovarit.movies.domain;
 
-public class Movie {
+class Movie {
 
     private final MovieId id;
     private final String title;

@@ -1,7 +1,5 @@
 package com.pivovarit.movies.domain;
 
-import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -11,8 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import static java.util.Objects.requireNonNull;
 
-@Repository
-public class InMemoryMovieRepository implements MovieRepository {
+class InMemoryMovieRepository implements MovieRepository {
 
     private final Map<Long, Movie> storage = new ConcurrentHashMap<>();
 

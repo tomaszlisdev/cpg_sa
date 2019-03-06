@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 public class MovieFacade {
 
     private final MovieRepository filmRepository;
-
     private final MovieCreator movieCreator;
 
     @Autowired
@@ -34,7 +33,7 @@ public class MovieFacade {
 
     public List<MovieDto> findAll() {
         return filmRepository.findAll().stream()
-          .map(m -> new MovieDto(m.getId().getId(), m.getTitle(), new MovieTypeDto(m.getType().name())))
-          .collect(Collectors.toList());
+            .map(m -> new MovieDto(m.getId().getId(), m.getTitle(), new MovieTypeDto(m.getType().name())))
+            .collect(Collectors.toList());
     }
 }

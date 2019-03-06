@@ -2,7 +2,7 @@ package com.pivovarit.movies.domain;
 
 import java.util.Objects;
 
-public class MovieId {
+class MovieId {
     private final long id;
 
     MovieId(long id) {

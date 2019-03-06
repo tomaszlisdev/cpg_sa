@@ -1,7 +1,6 @@
 package com.pivovarit.movies;
 
 import com.pivovarit.movies.domain.MovieFacade;
-import com.pivovarit.movies.domain.MovieType;
 import com.pivovarit.movies.dto.MovieDto;
 import com.pivovarit.movies.dto.MovieTypeDto;
 import org.junit.Test;
@@ -47,7 +46,7 @@ public class MovieRestResourceTest {
     }
 
     private MovieDto getSpidermanMovie() {
-        MovieTypeDto movieTypeDto = new MovieTypeDto(MovieType.NEW.toString());
+        MovieTypeDto movieTypeDto = new MovieTypeDto("NEW");
         return new MovieDto(1l, "Spiderman1", movieTypeDto);
     }
 }

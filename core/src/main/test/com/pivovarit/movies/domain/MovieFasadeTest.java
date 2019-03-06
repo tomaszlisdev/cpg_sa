@@ -63,7 +63,7 @@ public class MovieFasadeTest {
     public void addMovieMustInvokeRepositoryAndReturnId(){
         MovieDto movieDto = new MovieDto(1L, "Test Movie", new MovieTypeDto(MovieType.NEW.toString()));
         when(creator.from(movieDto)).thenCallRealMethod();
-        when(repository.save(any())).thenReturn(new MovieId(movieDto.getId()));
+        when(repository.save(any())).thenReturn(new MovieId(1l));
 
         MovieId movieId =  facade.add(movieDto);
 

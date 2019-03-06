@@ -8,7 +8,7 @@ class MoviesConfiguration {
 
     @Bean
     static MovieFacade inMemoryMovieFacade() {
-        return new MovieFacade(new InMemoryMovieRepository(), new MovieCreator());
+        return MovieFacade.inMemoryMovieFacade();
     }
 
     @Bean

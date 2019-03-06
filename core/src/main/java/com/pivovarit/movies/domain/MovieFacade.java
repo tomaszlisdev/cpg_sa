@@ -2,32 +2,33 @@ package com.pivovarit.movies.domain;
 
 import com.pivovarit.movies.dto.MovieDto;
 import com.pivovarit.movies.dto.MovieTypeDto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Service
+@RequiredArgsConstructor
 public class MovieFacade {
 
     private final MovieRepository filmRepository;
     private final MovieCreator movieCreator;
-
-    @Autowired
-    public MovieFacade(MovieRepository filmRepository, MovieCreator movieCreator) {
-        this.filmRepository = filmRepository;
-        this.movieCreator = movieCreator;
-
-        add(new MovieDto(1L, "Spiderman1", new MovieTypeDto("NEW")));
-    }
+    private final MoviePriceCalculator moviePriceCalculator;
 
     public static MovieFacade inMemoryMovieFacade() {
-        return new MovieFacade(new InMemoryMovieRepository(), new MovieCreator());
+        return new MovieFacade(new InMemoryMovieRepository(), new MovieCreator(), new StaticMoviePriceCalculator(42, 42, 42));
     }
 
     public MovieId add(MovieDto filmDto) {
         return filmRepository.save(movieCreator.from(filmDto));
+    }
+
+    public Optional<Long> priceFor(MovieTypeDto type) {
+        try {
+            return Optional.of(moviePriceCalculator.getPrice(MovieType.valueOf(type.getMovieType())));
+        } catch (Exception e) {
+            return Optional.empty();
+        }
     }
 
     public MovieDto findByTitle(String movieTitle) {

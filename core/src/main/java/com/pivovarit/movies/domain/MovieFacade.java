@@ -2,16 +2,20 @@ package com.pivovarit.movies.domain;
 
 import com.pivovarit.movies.dto.MovieDto;
 import com.pivovarit.movies.dto.MovieTypeDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class MovieFacade {
 
     private final MovieRepository filmRepository;
 
     private final MovieCreator movieCreator;
 
+    @Autowired
     public MovieFacade(MovieRepository filmRepository, MovieCreator movieCreator) {
         this.filmRepository = filmRepository;
         this.movieCreator = movieCreator;

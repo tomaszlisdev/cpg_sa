@@ -29,4 +29,34 @@ class MovieFacadeTest {
         MovieDto result = movieFacade.findByTitle(title);
         assertThat(result).isEqualTo(dto);
     }
+
+    @Test
+    void shouldAddMovie2() {
+        // given
+        String title = "foo";
+        MovieDto dto = new MovieDto(42l, title, new MovieTypeDto("NEW"));
+
+        // when
+        movieFacade.add(dto);
+
+        // then
+        MovieDto result = movieFacade.findByTitle(title);
+        assertThat(result).isEqualTo(dto);
+    }
+
+    @Test
+    void shouldAddMovie3() {
+        // given
+        String title = "foo";
+        MovieDto dto = new MovieDto(42l, title, new MovieTypeDto("NEW"));
+
+        // when
+        movieFacade.add(dto);
+
+        // then
+        MovieDto result = movieFacade.findByTitle(title);
+        assertThat(result).isEqualTo(dto);
+    }
+
+
 }

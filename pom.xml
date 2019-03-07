@@ -10,6 +10,8 @@
 
     <modules>
         <module>core</module>
+        <module>movie-details</module>
+        <module>eurekaserver</module>
     </modules>
 
     <properties>

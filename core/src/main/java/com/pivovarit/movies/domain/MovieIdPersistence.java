@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 @Embeddable
 class MovieIdPersistence implements Serializable {
     private String id;

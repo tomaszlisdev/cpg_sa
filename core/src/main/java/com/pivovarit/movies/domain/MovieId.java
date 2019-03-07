@@ -1,6 +1,5 @@
 package com.pivovarit.movies.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Value;
 
 @Value

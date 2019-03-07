@@ -7,5 +7,5 @@ public class MovieDto {
     private final Long id;
     private final String title;
     private final MovieTypeDto type;
-    private final int year;
+    private final Integer year;
 }

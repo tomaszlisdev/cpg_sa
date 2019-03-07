@@ -1,3 +1,0 @@
-CREATE TABLE A (
-    id BIGINT
-);

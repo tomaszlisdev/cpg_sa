@@ -3,6 +3,8 @@ package com.pivovarit.movies.domain;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
 class MoviesConfiguration {
@@ -22,6 +24,13 @@ class MoviesConfiguration {
     }
 
     @Bean
+    @Profile("prod")
+    JdbcTemplateMovieRepository jdbcTemplateMovieRepository(JdbcTemplate jdbcTemplate){
+        return new JdbcTemplateMovieRepository(jdbcTemplate);
+    }
+
+    @Bean
+    @Profile("dev")
     MovieRepository movieRepository() {
         return new InMemoryMovieRepository();
     }

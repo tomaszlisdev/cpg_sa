@@ -4,11 +4,11 @@ import org.springframework.boot.actuate.endpoint.web.annotation.RestControllerEn
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Component
-@RestControllerEndpoint(id = "custom-actuator")
+//@Component
+//@RestControllerEndpoint(id = "custom-actuator")
 class CustomActuatorEndpoint {
 
-    @GetMapping("/foo")
+ //   @GetMapping("/foo")
     String getFilms() {
         return "bar";
     }

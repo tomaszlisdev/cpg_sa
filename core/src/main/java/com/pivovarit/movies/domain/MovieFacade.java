@@ -33,12 +33,12 @@ public class MovieFacade {
 
     public MovieDto findByTitle(String movieTitle) {
         Movie movie = filmRepository.findByTitle(movieTitle).orElseThrow(IllegalStateException::new);
-        return new MovieDto(movie.getId().getId(), movie.getTitle(), new MovieTypeDto(movie.getType().name()));
+        return new MovieDto(movie.getId().getId(), movie.getTitle(), new MovieTypeDto(movie.getType().name()), movie.getYear());
     }
 
     public List<MovieDto> findAll() {
         return filmRepository.findAll().stream()
-            .map(m -> new MovieDto(m.getId().getId(), m.getTitle(), new MovieTypeDto(m.getType().name())))
+            .map(m -> new MovieDto(m.getId().getId(), m.getTitle(), new MovieTypeDto(m.getType().name()),m.getYear()))
             .collect(Collectors.toList());
     }
 }

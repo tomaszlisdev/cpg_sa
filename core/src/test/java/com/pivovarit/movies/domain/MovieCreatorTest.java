@@ -12,7 +12,7 @@ public class MovieCreatorTest {
     @Test
     public void movieCreatorMustRewriteDtoToEntity(){
         MovieCreator creator = new MovieCreator();
-        MovieDto movieDto = new MovieDto(1L, "Test Movie", new MovieTypeDto(MovieType.NEW.toString()));
+        MovieDto movieDto = new MovieDto(1L, "Test Movie", new MovieTypeDto(MovieType.NEW.toString()), 2017);
 
         Movie movie = creator.from(movieDto);
 

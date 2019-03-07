@@ -23,14 +23,14 @@ public class InMemoryMovieRepositoryTest {
 
     @Test
     public void saveMustReturnMovieId(){
-        Movie movie = new Movie(new MovieId(1L), "Star Wars", MovieType.NEW);
+        Movie movie = new Movie(new MovieId(1L), "Star Wars", MovieType.NEW, 2018);
         MovieId savedMovieId = repository.save(movie);
         assertEquals(movie.getId(), savedMovieId);
     }
 
     @Test
     public void savedObjectMustBeAchievableById(){
-        Movie movie = new Movie(new MovieId(1L), "Star Wars", MovieType.NEW);
+        Movie movie = new Movie(new MovieId(1L), "Star Wars", MovieType.NEW, 2018);
         repository.save(movie);
         Optional<Movie> foundMovie = repository.findByTitle("Star Wars");
         assertTrue(foundMovie.isPresent());
@@ -39,7 +39,7 @@ public class InMemoryMovieRepositoryTest {
 
     @Test
     public void savedMovieMustBeAchievableInListOfAllMovies(){
-        Movie movie = new Movie(new MovieId(1L), "Star Wars", MovieType.NEW);
+        Movie movie = new Movie(new MovieId(1L), "Star Wars", MovieType.NEW, 2018);
         repository.save(movie);
         Collection<Movie> foundMovies = repository.findAll();
         assertNotNull(foundMovies);

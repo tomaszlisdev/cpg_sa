@@ -2,7 +2,7 @@
 
 ```
  @Entity
- class HibernatePersistedMovie {
+ public class HibernatePersistedMovie {
 
      @Id
      private String id;
@@ -18,11 +18,11 @@
  // what's wrong here?
  @Transactional
  @Component
- class MovieService {
+ public class MovieService {
 
-     void updateMovie(String movieId) {
+     public void updateMovie(String movieId) {
            Movie movie = movieRepository.find(movieId);
-           movie.setName("ahdjahdkas";
+           movie.setName("ahdjahdkas");
            movieRepository.save(movie);
      }
  }
@@ -31,12 +31,12 @@
 ```
   // what's wrong here?
   @Entity(name = "movies")
-  class HibernatePersistedMovie {
+  public class HibernatePersistedMovie {
 
       @Id
       private String id;
 
-      @Column // what does this line do?
+      @Column
       private String title;
   }
  
@@ -47,7 +47,7 @@
 ```
   // what's wrong here?
   @Entity
-  class HibernatePersistedMovie {
+  public class HibernatePersistedMovie {
 
       @Id
       private String id;
@@ -60,7 +60,7 @@
   }
  
   @Entity
-  class HibernatePersistedCustomer {
+  public class HibernatePersistedCustomer {
  
       @Id
       private Long id;
@@ -77,7 +77,7 @@
 ```
   // what's wrong here?
   @Entity
-  class HibernatePersistedCustomer {
+  public class HibernatePersistedCustomer {
  
       @Id
       private Long id;
@@ -95,7 +95,7 @@
 ```
   // what's wrong here?
   @Entity
-  class HibernatePersistedCustomer {
+  public class HibernatePersistedCustomer {
  
       // ... 
       
@@ -104,7 +104,7 @@
   }
   
    @Entity
-   class HibernatePersistedCustomer {
+   public class HibernatePersistedCustomer {
    
       // ...
       
@@ -117,7 +117,7 @@
 ```
 // what's wrong here?
   @Entity
-  class HibernatePersistedCustomer {
+  public class HibernatePersistedCustomer {
  
       // ... 
       

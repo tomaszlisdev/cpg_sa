@@ -17,4 +17,5 @@ public class MovieRESTResource {
     Collection<MovieDto> getFilms() {
         return movieFacade.findAll();
     }
+
 }

@@ -1,16 +1,15 @@
 package com.pivovarit.movies.domain;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
+import java.time.Year;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNull;
 
 class InMemoryMovieRepository implements MovieRepository {
 
-    private final Map<Long, Movie> storage = new ConcurrentHashMap<>();
+    private final Map<String, Movie> storage = new ConcurrentHashMap<>();
 
     @Override
     public MovieId save(Movie movie) {
@@ -29,5 +28,42 @@ class InMemoryMovieRepository implements MovieRepository {
         return storage.values().stream()
             .filter(m -> m.getTitle().equals(title))
             .findAny();
+    }
+
+    @Override
+    public void delete(Movie movie) {
+        storage.remove(movie.getId());
+    }
+
+    @Override
+    public void deleteById(String movieId) {
+        storage.remove(movieId);
+    }
+
+    @Override
+    public Collection<Movie> findAllByType(MovieType type) {
+        return storage.values().stream()
+                .filter(movie -> movie.getType().equals(type))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<Movie> findById(String id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Collection<Movie> findAllByYear(Year year) {
+        return null;
+    }
+
+    @Override
+    public Collection<Movie> findAllBefore(int year) {
+        return storage.values().stream().filter(m -> m.getYear().isBefore(Year.of(year))).collect(Collectors.toList());
+    }
+
+    @Override
+    public Collection<Movie> findByYearBetween(int yearStart, int yearEnd) {
+        return storage.values().stream().filter(movie -> movie.getYear().isAfter(Year.of(yearStart)) && movie.getYear().isBefore(Year.of(yearEnd))).sorted(Comparator.comparing(Movie::getYear).reversed()).collect(Collectors.toList());
     }
 }

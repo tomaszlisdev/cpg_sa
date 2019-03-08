@@ -20,7 +20,7 @@ public class MovieFacadeTest {
     public void shouldAddMovie() {
         // given
         String title = "foo";
-        MovieDto dto = new MovieDto(42l, title, new MovieTypeDto("NEW"));
+        MovieDto dto = new MovieDto("spdrmun1", title, new MovieTypeDto("NEW"), 2012, "");
 
         // when
         movieFacade.add(dto);

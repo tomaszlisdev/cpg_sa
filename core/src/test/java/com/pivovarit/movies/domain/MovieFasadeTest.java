@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -31,7 +32,7 @@ public class MovieFasadeTest {
     @Test
     public void findAllMoviesShouldInvokeRepositoryAndReturnFilms(){
         List<Movie> moviesInRepository = new ArrayList<>();
-        Movie movie = new Movie(new MovieId(1L), "Test Movie", MovieType.NEW);
+        Movie movie = new Movie(new MovieId("1"), "Test Movie", MovieType.NEW, Year.of(2018));
         moviesInRepository.add(movie);
         when(repository.findAll()).thenReturn(moviesInRepository);
 
@@ -47,7 +48,7 @@ public class MovieFasadeTest {
 
     @Test
     public void findByTitleShouldInvokeRepositoryAndReturnAppropriateFilm(){
-        Movie movie = new Movie(new MovieId(1L), "Test Movie", MovieType.NEW);
+        Movie movie = new Movie(new MovieId("1"), "Test Movie", MovieType.NEW, Year.of(2018));
         when(repository.findByTitle("Test Movie")).thenReturn(Optional.of(movie));
 
         MovieDto movieDto = facade.findByTitle("Test Movie");
@@ -61,15 +62,15 @@ public class MovieFasadeTest {
 
     @Test
     public void addMovieMustInvokeRepositoryAndReturnId(){
-        MovieDto movieDto = new MovieDto(1L, "Test Movie", new MovieTypeDto(MovieType.NEW.toString()));
+        MovieDto movieDto = new MovieDto("1", "Test Movie", new MovieTypeDto(MovieType.NEW.toString()),2018, "");
         when(creator.from(movieDto)).thenCallRealMethod();
-        when(repository.save(any())).thenReturn(new MovieId(1l));
+        when(repository.save(any())).thenReturn(new MovieId("1"));
 
         MovieId movieId =  facade.add(movieDto);
 
         verify(repository, atLeastOnce()).save(any());
         verify(creator, atLeastOnce()).from(movieDto);
         assertNotNull(movieId);
-        assertEquals(movieDto.getId().longValue(), movieId.getId());
+        assertEquals(movieDto.getId(), movieId.getId());
     }
 }

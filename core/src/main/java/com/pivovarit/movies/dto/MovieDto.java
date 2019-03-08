@@ -4,7 +4,9 @@ import lombok.Value;
 
 @Value
 public class MovieDto {
-    private final Long id;
+    private final String id;
     private final String title;
     private final MovieTypeDto type;
+    private final Integer year;
+    private final String details;
 }

@@ -19,7 +19,7 @@ public class MovieDetailsApplication {
     }
 }
 
-@RestController
+/*@RestController
 class ServiceInstanceRestController {
 
     @Autowired
@@ -30,4 +30,4 @@ class ServiceInstanceRestController {
             @PathVariable String applicationName) {
         return this.discoveryClient.getInstances(applicationName);
     }
-}
+}*/

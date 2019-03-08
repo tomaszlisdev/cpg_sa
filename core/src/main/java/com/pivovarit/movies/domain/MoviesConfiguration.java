@@ -1,6 +1,8 @@
 package com.pivovarit.movies.domain;
 
+import com.pivovarit.movies.DetailsClient;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -20,12 +22,17 @@ class MoviesConfiguration {
     @Bean
     @Lazy // works only if bean not injected in CommandLineRunner instance
     MovieFacade movieFacade(
-        MovieRepository movieRepository,
-        @Value("${movies.price.new}") Long priceNew,
-        @Value("${movies.price.old}") Long priceOld,
-        @Value("${movies.price.regular}") Long priceRegular) {
+            MovieRepository movieRepository,
+            @Value("${movies.price.new}") Long priceNew,
+            @Value("${movies.price.old}") Long priceOld,
+            @Value("${movies.price.regular}") Long priceRegular, DetailsClient client) {
         System.out.println("fasada init");
-        return new MovieFacade(movieRepository, new MovieCreator(), new StaticMoviePriceCalculator(priceNew, priceOld, priceRegular));
+        return new MovieFacade(movieRepository, new MovieCreator(), new StaticMoviePriceCalculator(priceNew, priceOld, priceRegular), client);
+    }
+
+    @Bean
+    DetailsClient detailsClient(DiscoveryClient discoveryClient){
+        return new DetailsClient(discoveryClient);
     }
 
     @Bean

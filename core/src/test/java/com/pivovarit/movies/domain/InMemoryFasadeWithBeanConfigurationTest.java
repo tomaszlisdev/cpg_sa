@@ -23,7 +23,7 @@ public class InMemoryFasadeWithBeanConfigurationTest {
 
     @Test
     public void addedObjectMustBeAccessible(){
-        MovieDto movieDto = new MovieDto("1", "Test Movie", new MovieTypeDto("NEW"), 2018);
+        MovieDto movieDto = new MovieDto("1", "Test Movie", new MovieTypeDto("NEW"), 2018, "");
 
         movieFasade.add(movieDto);
 
@@ -34,7 +34,7 @@ public class InMemoryFasadeWithBeanConfigurationTest {
     public void beforeAddMovieCannotBeInMoviesList(){
         List<MovieDto> movies = movieFasade.findAll();
 
-        MovieDto movieDto = new MovieDto("1", "Test Movie", new MovieTypeDto("NEW"), 2018);
+        MovieDto movieDto = new MovieDto("1", "Test Movie", new MovieTypeDto("NEW"), 2018, "");
         movieFasade.add(movieDto);
 
         assertThat(movies, not(contains(movieDto)));
@@ -42,7 +42,7 @@ public class InMemoryFasadeWithBeanConfigurationTest {
 
     @Test
     public void afterAddMovieMustBeInMoviesList(){
-        MovieDto movieDto = new MovieDto("1", "Test Movie", new MovieTypeDto("NEW"), 2018);
+        MovieDto movieDto = new MovieDto("1", "Test Movie", new MovieTypeDto("NEW"), 2018, "");
         movieFasade.add(movieDto);
 
         List<MovieDto> movies = movieFasade.findAll();

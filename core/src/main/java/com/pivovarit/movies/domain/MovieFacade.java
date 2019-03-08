@@ -1,5 +1,6 @@
 package com.pivovarit.movies.domain;
 
+import com.pivovarit.movies.DetailsClient;
 import com.pivovarit.movies.dto.MovieDto;
 import com.pivovarit.movies.dto.MovieTypeDto;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +18,10 @@ public class MovieFacade {
     private final MovieRepository filmRepository;
     private final MovieCreator movieCreator;
     private final MoviePriceCalculator moviePriceCalculator;
+    private final DetailsClient detailsClient;
 
     public static MovieFacade inMemoryMovieFacade() {
-        return new MovieFacade(new InMemoryMovieRepository(), new MovieCreator(), new StaticMoviePriceCalculator(42, 42, 42));
+        return new MovieFacade(new InMemoryMovieRepository(), new MovieCreator(), new StaticMoviePriceCalculator(42, 42, 42), new DetailsClient());
     }
 
     public MovieId add(MovieDto filmDto) {
@@ -46,7 +48,7 @@ public class MovieFacade {
     }
 
     private MovieDto toMovieDto(Movie m) {
-        return new MovieDto(m.getId().getId(), m.getTitle(), new MovieTypeDto(m.getType().name()), m.getYear().get(ChronoField.YEAR));
+        return new MovieDto(m.getId().getId(), m.getTitle(), new MovieTypeDto(m.getType().name()), m.getYear().get(ChronoField.YEAR), detailsClient.getDetails(m.getId().getId()));
     }
 
     public List<MovieDto> findAllByType(String type){
@@ -65,11 +67,11 @@ public class MovieFacade {
         filmRepository.deleteById(id);
     }
 
-    public List<Movie> findMovieToYear(int year){
-        return filmRepository.findAllBefore(year).stream().collect(Collectors.toList());
+    public List<MovieDto> findMovieToYear(int year){
+        return filmRepository.findAllBefore(year).stream().map(this::toMovieDto).collect(Collectors.toList());
     }
 
-    public List<Movie> findMoviesBetweenYears(int yearFrom, int yearTo){
-        return filmRepository.findByYearBetween(yearFrom, yearTo).stream().collect(Collectors.toList());
+    public List<MovieDto> findMoviesBetweenYears(int yearFrom, int yearTo){
+        return filmRepository.findByYearBetween(yearFrom, yearTo).stream().map(this::toMovieDto).collect(Collectors.toList());
     }
 }

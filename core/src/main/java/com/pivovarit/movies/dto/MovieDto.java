@@ -8,4 +8,5 @@ public class MovieDto {
     private final String title;
     private final MovieTypeDto type;
     private final Integer year;
+    private final String details;
 }

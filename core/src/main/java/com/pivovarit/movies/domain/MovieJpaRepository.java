@@ -55,11 +55,11 @@ public class MovieJpaRepository implements MovieRepository{
 
     @Override
     public Collection<Movie> findAllBefore(int year) {
-        return crudRepository.findAllByYearLessThan(year).stream().map(m -> MovieMapper.INSTANCE.map(m)).collect(Collectors.toList());
+        return crudRepository.findAllByYearLessThan(Year.of(year)).stream().map(m -> MovieMapper.INSTANCE.map(m)).collect(Collectors.toList());
     }
 
     @Override
     public Collection<Movie> findByYearBetween(int yearStart, int yearEnd) {
-        return crudRepository.findAllByYearBetweenOrderByYearDesc(yearStart, yearEnd).stream().map(m -> MovieMapper.INSTANCE.map(m)).collect(Collectors.toList());
+        return crudRepository.findAllByYearBetweenOrderByYearDesc(Year.of(yearStart), Year.of(yearEnd)).stream().map(m -> MovieMapper.INSTANCE.map(m)).collect(Collectors.toList());
     }
 }

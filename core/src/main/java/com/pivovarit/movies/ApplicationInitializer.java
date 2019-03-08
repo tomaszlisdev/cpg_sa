@@ -28,13 +28,13 @@ class ApplicationInitializer implements CommandLineRunner {
         System.out.println("Started!");
 
         List<MovieDto> movies = Arrays.asList(
-            new MovieDto("spdrmun1", "Spiderman1", new MovieTypeDto("OLD"), 2012),
-            new MovieDto("spdrmun2", "Spiderman2", new MovieTypeDto("OLD"), 2013),
-            new MovieDto("incptn", "Inception", new MovieTypeDto("REGULAR"), 2014),
-            new MovieDto("plpfct1", "Pulp Fiction", new MovieTypeDto("OLD"), 1994),
-            new MovieDto("grnbook", "Grenbook", new MovieTypeDto("NEW"), 2019),
-            new MovieDto("mtrx", "Matrix", new MovieTypeDto("OLD"), 1997),
-            new MovieDto("cztrpncrn", "Czterej Pancerni", new MovieTypeDto("OLD"), 1966)
+            new MovieDto("spdrmun1", "Spiderman1", new MovieTypeDto("OLD"), 2012, ""),
+            new MovieDto("spdrmun2", "Spiderman2", new MovieTypeDto("OLD"), 2013, ""),
+            new MovieDto("incptn", "Inception", new MovieTypeDto("REGULAR"), 2014, ""),
+            new MovieDto("plpfct1", "Pulp Fiction", new MovieTypeDto("OLD"), 1994, ""),
+            new MovieDto("grnbook", "Grenbook", new MovieTypeDto("NEW"), 2019, ""),
+            new MovieDto("mtrx", "Matrix", new MovieTypeDto("OLD"), 1997, ""),
+            new MovieDto("cztrpncrn", "Czterej Pancerni", new MovieTypeDto("OLD"), 1966,"")
         );
 
         movies.forEach(m -> {

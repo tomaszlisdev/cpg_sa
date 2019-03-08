@@ -86,4 +86,14 @@ class JdbcTemplateMovieRepository implements MovieRepository {
                 , new Object[]{year.getValue()}
                 , new MovieRowMapper());
     }
+
+    @Override
+    public Collection<Movie> findAllBefore(int year) {
+        return null;
+    }
+
+    @Override
+    public Collection<Movie> findByYearBetween(int yearStart, int yearEnd) {
+        return null;
+    }
 }

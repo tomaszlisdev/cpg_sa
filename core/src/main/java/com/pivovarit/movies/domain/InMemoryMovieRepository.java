@@ -1,10 +1,7 @@
 package com.pivovarit.movies.domain;
 
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
@@ -58,5 +55,15 @@ class InMemoryMovieRepository implements MovieRepository {
     @Override
     public Collection<Movie> findAllByYear(Year year) {
         return null;
+    }
+
+    @Override
+    public Collection<Movie> findAllBefore(int year) {
+        return storage.values().stream().filter(m -> m.getYear().isBefore(Year.of(year))).collect(Collectors.toList());
+    }
+
+    @Override
+    public Collection<Movie> findByYearBetween(int yearStart, int yearEnd) {
+        return storage.values().stream().filter(movie -> movie.getYear().isAfter(Year.of(yearStart)) && movie.getYear().isBefore(Year.of(yearEnd))).sorted(Comparator.comparing(Movie::getYear).reversed()).collect(Collectors.toList());
     }
 }

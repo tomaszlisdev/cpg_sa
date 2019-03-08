@@ -1,5 +1,5 @@
 com/pivovarit/movies/MovieDetailsStaticRepository.class
 com/pivovarit/movies/MovieDetailsController$MovieDetails.class
 com/pivovarit/movies/MovieDetailsApplication.class
-com/pivovarit/movies/MovieRepository.class
+com/pivovarit/movies/MovieDetailsRepository.class
 com/pivovarit/movies/MovieDetailsController.class

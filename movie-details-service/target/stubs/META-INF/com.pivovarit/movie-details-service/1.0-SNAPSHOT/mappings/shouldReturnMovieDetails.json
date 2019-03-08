@@ -1,16 +1,16 @@
 {
-  "id" : "7860301e-1042-452d-938c-962a394c2b90",
+  "id" : "9e099ef4-a1ef-49ce-b53c-867e672fa987",
   "request" : {
     "url" : "/movie-details/idkfa7",
     "method" : "GET"
   },
   "response" : {
     "status" : 200,
-    "body" : "{\"details\":\"JGWMOPEEBGWJGBEQLTMV\"}",
+    "body" : "{\"details\":\"idkfa7-details\"}",
     "headers" : {
       "Content-Type" : "application/json;charset=UTF-8"
     },
     "transformers" : [ "response-template" ]
   },
-  "uuid" : "7860301e-1042-452d-938c-962a394c2b90"
+  "uuid" : "9e099ef4-a1ef-49ce-b53c-867e672fa987"
 }

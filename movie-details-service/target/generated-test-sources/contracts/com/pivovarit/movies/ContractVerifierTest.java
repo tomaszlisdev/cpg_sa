@@ -20,7 +20,7 @@ import static org.springframework.cloud.contract.verifier.util.ContractVerifierU
 public class ContractVerifierTest extends MovieDetailsControllerContractVerifier {
 
 	@Test
-	public void validate_shouldReturnEmptyObjectWhenNothingFound() throws Exception {
+	public void validate_shouldHandleEmptyResponse() throws Exception {
 		// given:
 			MockMvcRequestSpecification request = given();
 
@@ -49,7 +49,7 @@ public class ContractVerifierTest extends MovieDetailsControllerContractVerifier
 			assertThat(response.header("Content-Type")).matches("application/json;charset=UTF-8.*");
 		// and:
 			DocumentContext parsedJson = JsonPath.parse(response.getBody().asString());
-			assertThatJson(parsedJson).field("['details']").matches("^\\s*\\S[\\S\\s]*");
+			assertThatJson(parsedJson).field("['details']").isEqualTo("idkfa7-details");
 	}
 
 }

@@ -13,9 +13,11 @@ Contract.make {
         headers {
             contentType(applicationJsonUtf8())
         }
-        body(
-                details: $(anyNonBlankString())
-        )
+        body("""
+           {
+             "details":"idkfa7-details",
+           }
+     """)
         status 200
     }
 }

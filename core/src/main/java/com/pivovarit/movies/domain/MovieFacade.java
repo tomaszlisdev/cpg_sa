@@ -1,6 +1,7 @@
 package com.pivovarit.movies.domain;
 
 import com.pivovarit.movies.DetailsClient;
+import com.pivovarit.movies.MockMovieDetailsClient;
 import com.pivovarit.movies.dto.MovieDto;
 import com.pivovarit.movies.dto.MovieTypeDto;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class MovieFacade {
     private final DetailsClient detailsClient;
 
     public static MovieFacade inMemoryMovieFacade() {
-        return new MovieFacade(new InMemoryMovieRepository(), new MovieCreator(), new StaticMoviePriceCalculator(42, 42, 42), new DetailsClient());
+        return new MovieFacade(new InMemoryMovieRepository(), new MovieCreator(), new StaticMoviePriceCalculator(42, 42, 42), new MockMovieDetailsClient());
     }
 
     public MovieId add(MovieDto filmDto) {

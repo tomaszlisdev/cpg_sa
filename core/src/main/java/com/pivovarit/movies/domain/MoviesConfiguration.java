@@ -1,6 +1,7 @@
 package com.pivovarit.movies.domain;
 
 import com.pivovarit.movies.DetailsClient;
+import com.pivovarit.movies.DetailsClientImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +33,7 @@ class MoviesConfiguration {
 
     @Bean
     DetailsClient detailsClient(DiscoveryClient discoveryClient){
-        return new DetailsClient(discoveryClient);
+        return new DetailsClientImpl(discoveryClient);
     }
 
     @Bean

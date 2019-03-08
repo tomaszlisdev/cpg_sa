@@ -14,7 +14,7 @@ class MoviePersistence {
     @EmbeddedId
     private MovieIdPersistence id;
     private String title;
-    @Enumerated
+    @Enumerated(value = EnumType.STRING)
     private MovieType type;
     @Convert(converter = YearConverter.class)
     private Year year;

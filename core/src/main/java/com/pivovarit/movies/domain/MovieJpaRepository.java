@@ -39,7 +39,7 @@ public class MovieJpaRepository implements MovieRepository{
 
     @Override
     public Collection<Movie> findAllByType(MovieType type) {
-        return crudRepository.findAllByType(type);
+        return crudRepository.findAllByType(type).stream().map(m -> MovieMapper.INSTANCE.map(m)).collect(Collectors.toList());
     }
 
     @Override
@@ -50,6 +50,6 @@ public class MovieJpaRepository implements MovieRepository{
 
     @Override
     public Collection<Movie> findAllByYear(Year year) {
-        return crudRepository.findAllByYear(year);
+        return crudRepository.findAllByYear(year).stream().map(m -> MovieMapper.INSTANCE.map(m)).collect(Collectors.toList());
     }
 }

@@ -33,13 +33,13 @@ public class MovieRESTResource {
         movieFacade.deleteById(id);
     }
 
-    @GetMapping("/movies/search")
-    Collection<MovieDto> searchByType(@RequestParam("type") String type){
+    @GetMapping("/movies/type/{type}")
+    Collection<MovieDto> searchByType(@PathVariable("type") String type){
         return movieFacade.findAllByType(type);
     }
 
-    @GetMapping("/movies/search")
-    Collection<MovieDto> searchByYear(@RequestParam("year") int year){
+    @GetMapping("/movies/year/{year}")
+    Collection<MovieDto> searchByYear(@PathVariable("year") int year){
         return movieFacade.findAllByYear(year);
     }
 

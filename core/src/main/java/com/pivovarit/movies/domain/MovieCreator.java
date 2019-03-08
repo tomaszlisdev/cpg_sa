@@ -9,4 +9,9 @@ class MovieCreator {
         return new Movie(new MovieId(filmDto.getId()), filmDto.getTitle(), MovieType
             .valueOf(filmDto.getType().getMovieType()), Year.of(filmDto.getYear()));
     }
+
+    Movie from(HibernatePersistedMovie filmDto) {
+        return new Movie(MovieId.of(filmDto.getId()), filmDto.getTitle(), MovieType.valueOf(filmDto.getType()), Year
+            .of(filmDto.getYear()));
+    }
 }

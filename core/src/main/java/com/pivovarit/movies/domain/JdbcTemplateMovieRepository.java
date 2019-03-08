@@ -12,6 +12,7 @@ import java.time.Year;
 import java.time.temporal.ChronoField;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @RequiredArgsConstructor
 class JdbcTemplateMovieRepository implements MovieRepository {

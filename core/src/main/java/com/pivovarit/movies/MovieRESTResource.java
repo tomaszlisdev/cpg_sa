@@ -5,6 +5,7 @@ import com.pivovarit.movies.dto.MovieDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,31 +54,4 @@ public class MovieRESTResource {
     MovieDto findById(@PathVariable("id") String id){
         return movieFacade.findById(id);
     }
-
-    @GetMapping("/movies/search")
-    Collection<MovieDto> findByParameters(@RequestParam Map<String,String> queryParams){
-        if(queryParams.containsKey("yearTo")){
-            if(!queryParams.containsKey("yearFrom")) {
-                return movieFacade.findMovieToYear(Integer.valueOf(queryParams.get("yearTo")));
-            } else {
-                return movieFacade.findMoviesBetweenYears(Integer.valueOf(queryParams.get("yearFrom")), Integer.valueOf(queryParams.get("yearTo")));
-            }
-        } else if(queryParams.containsKey("type")){
-            return searchByType(queryParams.get("type"));
-        } else if(queryParams.containsKey("title")){
-            return Collections.singletonList(getFilms(queryParams.get("title")));
-        }
-        return Collections.EMPTY_LIST;
-    }
-
-
-
-
-
-
-
-
-
-
-
 }

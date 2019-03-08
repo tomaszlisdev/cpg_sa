@@ -16,6 +16,4 @@ interface MovieRepository {
     Optional<Movie> findByTitle(String title);
     Collection<Movie> findAllBefore(int year);
     Collection<Movie> findByYearBetween(int yearStart, int yearEnd);
-    // TODO find all before year
-    // TODO find all between years sorted descending
 }

@@ -7,4 +7,8 @@ import lombok.Value;
 @Builder
 class MovieId {
     private final String id;
+
+    public static MovieId of(String id){
+        return new MovieId(id);
+    }
 }

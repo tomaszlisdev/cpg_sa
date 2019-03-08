@@ -7,7 +7,7 @@ import java.util.Optional;
 interface MovieRepository {
     MovieId save(Movie movie);
     void delete(Movie movie);
-    void deleteById(String movie);
+    void deleteById(String movieId);
     Collection<Movie> findAllByType(MovieType type);
     Optional<Movie> findById(String id);
     Collection<Movie> findAllByYear(Year year);

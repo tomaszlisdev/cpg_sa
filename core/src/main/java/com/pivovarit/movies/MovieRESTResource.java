@@ -27,4 +27,36 @@ public class MovieRESTResource {
     void addFilm(@RequestBody MovieDto movieDto){
          movieFacade.add(movieDto);
     }
+
+    @DeleteMapping("/movies/id/{id}")
+    void delete(@PathVariable("id") String id){
+        movieFacade.deleteById(id);
+    }
+
+    @GetMapping("/movies/search")
+    Collection<MovieDto> searchByType(@RequestParam("type") String type){
+        return movieFacade.findAllByType(type);
+    }
+
+    @GetMapping("/movies/search")
+    Collection<MovieDto> searchByYear(@RequestParam("year") int year){
+        return movieFacade.findAllByYear(year);
+    }
+
+    @GetMapping("/movies/id/{id}")
+    MovieDto findById(@PathVariable("id") String id){
+        return movieFacade.findById(id);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

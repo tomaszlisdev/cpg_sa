@@ -4,6 +4,7 @@ import com.pivovarit.movies.dto.MovieDto;
 import com.pivovarit.movies.dto.MovieTypeDto;
 import lombok.RequiredArgsConstructor;
 
+import java.time.temporal.ChronoField;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -33,12 +34,12 @@ public class MovieFacade {
 
     public MovieDto findByTitle(String movieTitle) {
         Movie movie = filmRepository.findByTitle(movieTitle).orElseThrow(IllegalStateException::new);
-        return new MovieDto(movie.getId().getId(), movie.getTitle(), new MovieTypeDto(movie.getType().name()), movie.getYear());
+        return new MovieDto(movie.getId().getId(), movie.getTitle(), new MovieTypeDto(movie.getType().name()), movie.getYear().get(ChronoField.YEAR));
     }
 
     public List<MovieDto> findAll() {
         return filmRepository.findAll().stream()
-            .map(m -> new MovieDto(m.getId().getId(), m.getTitle(), new MovieTypeDto(m.getType().name()),m.getYear()))
+            .map(m -> new MovieDto(m.getId().getId(), m.getTitle(), new MovieTypeDto(m.getType().name()), m.getYear().get(ChronoField.YEAR)))
             .collect(Collectors.toList());
     }
 }

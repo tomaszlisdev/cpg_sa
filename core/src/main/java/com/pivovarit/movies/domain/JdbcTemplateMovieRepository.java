@@ -1,18 +1,25 @@
 package com.pivovarit.movies.domain;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Year;
+import java.time.temporal.ChronoField;
 import java.util.Collection;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+<<<<<<< HEAD
 public class JdbcTemplateMovieRepository implements  MovieRepository{
 
+=======
+class JdbcTemplateMovieRepository implements MovieRepository {
+
+    private static final MovieRowMapper MOVIE_ROW_MAPPER = new MovieRowMapper();
+>>>>>>> origin/master
     private final JdbcTemplate jdbcTemplate;
 
     @Override

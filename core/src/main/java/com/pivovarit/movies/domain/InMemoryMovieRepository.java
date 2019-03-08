@@ -10,7 +10,7 @@ import static java.util.Objects.requireNonNull;
 
 class InMemoryMovieRepository implements MovieRepository {
 
-    private final Map<Long, Movie> storage = new ConcurrentHashMap<>();
+    private final Map<String, Movie> storage = new ConcurrentHashMap<>();
 
     @Override
     public MovieId save(Movie movie) {

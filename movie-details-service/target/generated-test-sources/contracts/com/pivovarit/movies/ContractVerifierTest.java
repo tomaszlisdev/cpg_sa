@@ -36,6 +36,25 @@ public class ContractVerifierTest extends MovieDetailsControllerContractVerifier
 	}
 
 	@Test
+	public void validate_shouldReturnDetailsContract() throws Exception {
+		// given:
+			MockMvcRequestSpecification request = given()
+					.header("Content-Type", "application/json");
+
+		// when:
+			ResponseOptions response = given().spec(request)
+					.get("/movie-details/idkfa78");
+
+		// then:
+			assertThat(response.statusCode()).isEqualTo(200);
+			assertThat(response.header("Content-Type")).isEqualTo("application/json");
+		// and:
+			DocumentContext parsedJson = JsonPath.parse(response.getBody().asString());
+			String responseBody = response.getBody().asString();
+			assertThat(responseBody).isEqualTo("When bitten by a genetically modified spider, a nerdy, shy, and awkward high school student gains spider-like abilities that he eventually must use to fight evil as a superhero after tragedy befalls his family.");
+	}
+
+	@Test
 	public void validate_shouldReturnMovieDetails() throws Exception {
 		// given:
 			MockMvcRequestSpecification request = given();

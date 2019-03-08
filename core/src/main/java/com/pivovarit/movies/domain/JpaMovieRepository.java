@@ -30,22 +30,22 @@ class JpaMovieRepository implements MovieRepository {
 
     @Override
     public void delete(Movie movie) {
-        springDataMovieRepository.delete(new HibernatePersistedMovie(movie.getId().getId(),movie.getTitle(),movie.getType().toString(),movie.getYear().getValue()));
+        crudMovieRepository.delete(new HibernatePersistedMovie(movie.getId().getId(),movie.getTitle(),movie.getType().toString(),movie.getYear().getValue()));
     }
 
     @Override
     public void deleteById(String movieId) {
-        springDataMovieRepository.deleteById(movieId);
+        crudMovieRepository.deleteById(movieId);
     }
 
     @Override
     public Collection<Movie> findAllByType(MovieType type) {
-        return springDataMovieRepository.findAllByType(type.toString()).stream().map(this::toMovie).collect(Collectors.toList());
+        return crudMovieRepository.findAllByType(type.toString()).stream().map(this::toMovie).collect(Collectors.toList());
     }
 
     @Override
     public Optional<Movie> findById(String id) {
-        return springDataMovieRepository.findById(id).map(this::toMovie);
+        return crudMovieRepository.findById(id).map(this::toMovie);
     }
 
     private Movie toMovie(HibernatePersistedMovie m) {
@@ -54,26 +54,26 @@ class JpaMovieRepository implements MovieRepository {
 
     @Override
     public Collection<Movie> findAllByYear(Year year) {
-        return springDataMovieRepository.findAllByYear(year.getValue()).stream().map(this::toMovie).collect(Collectors.toList());
+        return crudMovieRepository.findAllByYear(year.getValue()).stream().map(this::toMovie).collect(Collectors.toList());
     }
 
     @Override
     public Collection<Movie> findAll() {
-        return StreamSupport.stream(springDataMovieRepository.findAll().spliterator(),false).map(this::toMovie).collect(Collectors.toList());
+        return StreamSupport.stream(crudMovieRepository.findAll().spliterator(),false).map(this::toMovie).collect(Collectors.toList());
     }
 
     @Override
     public Optional<Movie> findByTitle(String title) {
-        return springDataMovieRepository.findAllByTitle(title).map(this::toMovie);
+        return crudMovieRepository.findAllByTitle(title).map(this::toMovie);
     }
 
     @Override
     public Collection<Movie> findAllBefore(int year) {
-        return springDataMovieRepository.findAllByYearLessThan(year).stream().map(this::toMovie).collect(Collectors.toList());
+        return crudMovieRepository.findAllByYearLessThan(year).stream().map(this::toMovie).collect(Collectors.toList());
     }
 
     @Override
     public Collection<Movie> findByYearBetween(int yearStart, int yearEnd) {
-        return springDataMovieRepository.findAllByYearBetweenOrderByYearDesc(yearStart, yearEnd).stream().map(this::toMovie).collect(Collectors.toList());
+        return crudMovieRepository.findAllByYearBetweenOrderByYearDesc(yearStart, yearEnd).stream().map(this::toMovie).collect(Collectors.toList());
     }
 }

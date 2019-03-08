@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.Year;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -23,14 +24,14 @@ public class InMemoryMovieRepositoryTest {
 
     @Test
     public void saveMustReturnMovieId(){
-        Movie movie = new Movie(new MovieId(1L), "Star Wars", MovieType.NEW, 2018);
+        Movie movie = new Movie(new MovieId("1"), "Star Wars", MovieType.NEW, Year.of(2018));
         MovieId savedMovieId = repository.save(movie);
         assertEquals(movie.getId(), savedMovieId);
     }
 
     @Test
     public void savedObjectMustBeAchievableById(){
-        Movie movie = new Movie(new MovieId(1L), "Star Wars", MovieType.NEW, 2018);
+        Movie movie = new Movie(new MovieId("1"), "Star Wars", MovieType.NEW, Year.of(2018));
         repository.save(movie);
         Optional<Movie> foundMovie = repository.findByTitle("Star Wars");
         assertTrue(foundMovie.isPresent());
@@ -39,7 +40,7 @@ public class InMemoryMovieRepositoryTest {
 
     @Test
     public void savedMovieMustBeAchievableInListOfAllMovies(){
-        Movie movie = new Movie(new MovieId(1L), "Star Wars", MovieType.NEW, 2018);
+        Movie movie = new Movie(new MovieId("1"), "Star Wars", MovieType.NEW, Year.of(2018));
         repository.save(movie);
         Collection<Movie> foundMovies = repository.findAll();
         assertNotNull(foundMovies);

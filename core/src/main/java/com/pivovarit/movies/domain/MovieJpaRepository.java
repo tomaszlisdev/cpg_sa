@@ -3,6 +3,7 @@ package com.pivovarit.movies.domain;
 
 import lombok.Value;
 
+import java.time.Year;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,5 +25,31 @@ public class MovieJpaRepository implements MovieRepository{
     @Override
     public Optional<Movie> findByTitle(String title) {
         return crudRepository.findByTitle(title).map(MovieMapper.INSTANCE::map);
+    }
+
+    @Override
+    public void delete(Movie movie) {
+        crudRepository.delete(MovieMapper.INSTANCE.map(movie));
+    }
+
+    @Override
+    public void deleteById(String movieId) {
+        crudRepository.deleteById(new MovieIdPersistence(movieId));
+    }
+
+    @Override
+    public Collection<Movie> findAllByType(MovieType type) {
+        return crudRepository.findAllByType(type);
+    }
+
+    @Override
+    public Optional<Movie> findById(String id) {
+        return crudRepository.findById(new MovieIdPersistence(id))
+                .map(moviePersistence -> MovieMapper.INSTANCE.map(moviePersistence));
+    }
+
+    @Override
+    public Collection<Movie> findAllByYear(Year year) {
+        return crudRepository.findAllByYear(year);
     }
 }

@@ -1,15 +1,13 @@
 package com.pivovarit.movies.domain;
 
+import com.pivovarit.movies.converters.YearConverter;
 import lombok.*;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.Year;
 
 
-@Getter
-@Setter
+@Data
 @Table(name = "movie")
 @Entity
 class MoviePersistence {
@@ -18,5 +16,6 @@ class MoviePersistence {
     private String title;
     @Enumerated
     private MovieType type;
-    private int year;
+    @Convert(converter = YearConverter.class)
+    private Year year;
 }

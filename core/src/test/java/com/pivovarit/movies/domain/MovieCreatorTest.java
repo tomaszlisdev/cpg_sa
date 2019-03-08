@@ -12,14 +12,14 @@ public class MovieCreatorTest {
     @Test
     public void movieCreatorMustRewriteDtoToEntity(){
         MovieCreator creator = new MovieCreator();
-        MovieDto movieDto = new MovieDto(1L, "Test Movie", new MovieTypeDto(MovieType.NEW.toString()), 2017);
+        MovieDto movieDto = new MovieDto("1", "Test Movie", new MovieTypeDto(MovieType.NEW.toString()), 2017);
 
         Movie movie = creator.from(movieDto);
 
         assertNotNull(movie);
         assertNotNull(movie.getId());
         assertNotNull(movieDto.getId());
-        assertEquals(movieDto.getId().longValue(), movie.getId().getId());
+        assertEquals(movieDto.getId(), movie.getId().getId());
         assertEquals(movieDto.getTitle(), movie.getTitle());
         assertNotNull(movieDto.getType());
         assertEquals(movieDto.getType().getMovieType(), movie.getType().toString());

@@ -20,7 +20,7 @@ public class MovieApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        jdbcTemplate.query("SELECT * FROM movie", (rs, rowNum) -> getPrintln(rs.getLong("id"), rs.getString("title"), rs.getString("type")));
+        jdbcTemplate.query("SELECT * FROM movie", (rs, rowNum) -> getPrintln(rs.getString("id"), rs.getString("title"), rs.getString("type")));
     }
 
     private String getPrintln(Object id, Object title, Object type) {

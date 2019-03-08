@@ -47,6 +47,6 @@ public class MovieRestResourceTest {
 
     private MovieDto getSpidermanMovie() {
         MovieTypeDto movieTypeDto = new MovieTypeDto("NEW");
-        return new MovieDto(1l, "Spiderman1", movieTypeDto, 2017);
+        return new MovieDto("1", "Spiderman1", movieTypeDto, 2017);
     }
 }

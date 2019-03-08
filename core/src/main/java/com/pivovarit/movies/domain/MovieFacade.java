@@ -64,4 +64,12 @@ public class MovieFacade {
     public void deleteById(String id){
         filmRepository.deleteById(id);
     }
+
+    public List<Movie> findMovieToYear(int year){
+        return filmRepository.findAllBefore(year).stream().collect(Collectors.toList());
+    }
+
+    public List<Movie> findMoviesBetweenYears(int yearFrom, int yearTo){
+        return filmRepository.findByYearBetween(yearFrom, yearTo).stream().collect(Collectors.toList());
+    }
 }

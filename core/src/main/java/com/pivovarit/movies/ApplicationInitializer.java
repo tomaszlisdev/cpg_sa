@@ -4,7 +4,6 @@ import com.pivovarit.movies.domain.MovieFacade;
 import com.pivovarit.movies.dto.MovieDto;
 import com.pivovarit.movies.dto.MovieTypeDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

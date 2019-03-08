@@ -2,6 +2,8 @@ package com.pivovarit.movies.domain;
 
 import com.pivovarit.movies.DetailsClient;
 import com.pivovarit.movies.DetailsClientImpl;
+import com.pivovarit.movies.MovieDetailsClient;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.context.annotation.Bean;
@@ -11,8 +13,11 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.UUID;
+
 @Configuration
 @Lazy
+@Slf4j
 class MoviesConfiguration {
 
     @Bean

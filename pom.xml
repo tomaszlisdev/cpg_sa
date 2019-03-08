@@ -13,6 +13,7 @@
         <module>movie-details</module>
         <module>eurekaserver</module>
         <module>config-server</module>
+        <module>movie-details-service</module>
     </modules>
 
     <properties>

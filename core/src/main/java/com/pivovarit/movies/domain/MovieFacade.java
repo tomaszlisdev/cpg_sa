@@ -2,15 +2,25 @@ package com.pivovarit.movies.domain;
 
 import com.pivovarit.movies.DetailsClient;
 import com.pivovarit.movies.MockMovieDetailsClient;
+import com.pivovarit.movies.MovieDetailsClient;
 import com.pivovarit.movies.dto.MovieDto;
 import com.pivovarit.movies.dto.MovieTypeDto;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
+import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.converter.FormHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.Year;
+import java.net.URI;
 import java.time.temporal.ChronoField;
 import java.util.Collection;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor

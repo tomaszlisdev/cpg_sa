@@ -1,0 +1,16 @@
+{
+  "id" : "7860301e-1042-452d-938c-962a394c2b90",
+  "request" : {
+    "url" : "/movie-details/idkfa7",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"details\":\"JGWMOPEEBGWJGBEQLTMV\"}",
+    "headers" : {
+      "Content-Type" : "application/json;charset=UTF-8"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "7860301e-1042-452d-938c-962a394c2b90"
+}
